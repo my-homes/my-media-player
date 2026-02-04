@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,6 +30,20 @@ namespace MyMediaPlayer
             axWindowsMediaPlayer1.settings.autoStart = true; /* 自動開始をオンにする */
             axWindowsMediaPlayer1.Ctlenabled = true;            // ダブルクリックによるフルスクリーン出力を無効化
             axWindowsMediaPlayer1.enableContextMenu = true;     // 右クリックによるコンテキストメニューの出力を無効化
+            SetWMPVolume(100);
+        }
+        private void SetWMPVolume(int volume)
+        {
+            // Ensure volume is within the valid range (0 to 100)
+            if (volume >= 0 && volume <= 100)
+            {
+                axWindowsMediaPlayer1.settings.volume = volume;
+            }
+            else
+            {
+                // Handle invalid input if necessary
+                Console.WriteLine("Volume must be between 0 and 100.");
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
