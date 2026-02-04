@@ -53,7 +53,7 @@ namespace MyMediaPlayer
             //axWindowsMediaPlayer1.enableContextMenu = true;     // 右クリックによるコンテキストメニューの出力を無効化
             //MediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
 
-            //panel1.Dock = DockStyle.Fill;
+            panel1.Dock = DockStyle.Fill;
             panel1.Controls.Add(this.MediaPlayer);
 
             MediaPlayer.Dock = DockStyle.Fill;
@@ -275,5 +275,36 @@ namespace MyMediaPlayer
             }
             base.OnDragDrop(e);
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            MediaPlayer.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
+            //axWindowsMediaPlayer1.Ctlcontrols.play();
+        }
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Media Files|*.mp3;*.wma;*.wav;*.mp4;*.wmv|All Files|*.*";
+            openFileDialog.Multiselect = true; // Allow multiple selections
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 1. Create a new, empty playlist in the library
+                IWMPPlaylist myPlayList = MediaPlayer.playlistCollection.newPlaylist("MyPlayList");
+                // 2. Iterate through the selected files
+                foreach (string file in openFileDialog.FileNames)
+                {
+                    // Create a new media item from the file path
+                    IWMPMedia mediaItem = MediaPlayer.newMedia(file);
+
+                    // Add the media item to the playlist
+                    myPlayList.appendItem(mediaItem);
+                }
+                // 3. Set the newly created playlist as the current playlist to start playback
+                MediaPlayer.currentPlaylist = myPlayList;
+                // Optional: Start playback (it might start automatically depending on control settings)
+                MediaPlayer.Ctlcontrols.play();
+            }
+        }
+
     }
 }
