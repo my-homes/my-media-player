@@ -5,6 +5,8 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net462</TargetFramework>
 		<LangVersion>latest</LangVersion>
+		<AssemblyName>mmp</AssemblyName>
+		<RootNamespace>MyMediaPlayer</RootNamespace>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<UseWindowsForms>true</UseWindowsForms>

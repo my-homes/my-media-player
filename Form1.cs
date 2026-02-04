@@ -210,75 +210,75 @@ namespace MyMediaPlayer
                 Console.WriteLine("Volume must be between 0 and 100.");
             }
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MediaPlayer.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
-            //axWindowsMediaPlayer1.Ctlcontrols.play();
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Media Files|*.mp3;*.wma;*.wav;*.mp4;*.wmv|All Files|*.*";
-            openFileDialog.Multiselect = true; // Allow multiple selections
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                // 1. Create a new, empty playlist in the library
-                IWMPPlaylist myPlayList = MediaPlayer.playlistCollection.newPlaylist("MyPlayList");
-                // 2. Iterate through the selected files
-                foreach (string file in openFileDialog.FileNames)
-                {
-                    // Create a new media item from the file path
-                    IWMPMedia mediaItem = MediaPlayer.newMedia(file);
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    MediaPlayer.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
+        //    //axWindowsMediaPlayer1.Ctlcontrols.play();
+        //}
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog openFileDialog = new OpenFileDialog();
+        //    openFileDialog.Filter = "Media Files|*.mp3;*.m4a;*.wma;*.wav;*.mp4;*.wmv|All Files|*.*";
+        //    openFileDialog.Multiselect = true; // Allow multiple selections
+        //    if (openFileDialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        // 1. Create a new, empty playlist in the library
+        //        IWMPPlaylist myPlayList = MediaPlayer.playlistCollection.newPlaylist("MyPlayList");
+        //        // 2. Iterate through the selected files
+        //        foreach (string file in openFileDialog.FileNames)
+        //        {
+        //            // Create a new media item from the file path
+        //            IWMPMedia mediaItem = MediaPlayer.newMedia(file);
 
-                    // Add the media item to the playlist
-                    myPlayList.appendItem(mediaItem);
-                }
-                // 3. Set the newly created playlist as the current playlist to start playback
-                MediaPlayer.currentPlaylist = myPlayList;
-                // Optional: Start playback (it might start automatically depending on control settings)
-                MediaPlayer.Ctlcontrols.play();
-            }
-        }
+        //            // Add the media item to the playlist
+        //            myPlayList.appendItem(mediaItem);
+        //        }
+        //        // 3. Set the newly created playlist as the current playlist to start playback
+        //        MediaPlayer.currentPlaylist = myPlayList;
+        //        // Optional: Start playback (it might start automatically depending on control settings)
+        //        MediaPlayer.Ctlcontrols.play();
+        //    }
+        //}
 
-        private void 再生ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MediaPlayer.Ctlcontrols.play();
-        }
+        //private void 再生ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    MediaPlayer.Ctlcontrols.play();
+        //}
 
-        private void 一時停止ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MediaPlayer.Ctlcontrols.pause();
-        }
-        // ファイルがドラッグアンドドロップされようとしているときで、ファイルの拡張子が.mp4のときだけファイルのパスを返します。それ以外のときは空文字列を返します。
-        string GetMp4FilePath(DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                string filePath = files[0];
-                FileInfo info = new FileInfo(filePath);
-                if (info.Extension.ToLower() == ".mp4")
-                    return filePath;
-            }
-            return "";
-        }
-        private void Form1_DragOver(object sender, DragEventArgs e)
-        {
-            if (GetMp4FilePath(e) != "")
-                e.Effect = DragDropEffects.Copy;
-            else
-                e.Effect = DragDropEffects.None;
-            base.OnDragOver(e);
-        }
-        private void Form1_DragDrop(object sender, DragEventArgs e)
-        {
-            string filePath = GetMp4FilePath(e);
-            if (filePath != "")
-            {
-                MediaPlayer.URL = filePath;
-            }
-            base.OnDragDrop(e);
-        }
+        //private void 一時停止ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    MediaPlayer.Ctlcontrols.pause();
+        //}
+        //// ファイルがドラッグアンドドロップされようとしているときで、ファイルの拡張子が.mp4のときだけファイルのパスを返します。それ以外のときは空文字列を返します。
+        //string GetMp4FilePath(DragEventArgs e)
+        //{
+        //    if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        //    {
+        //        string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        //        string filePath = files[0];
+        //        FileInfo info = new FileInfo(filePath);
+        //        if (info.Extension.ToLower() == ".mp4")
+        //            return filePath;
+        //    }
+        //    return "";
+        //}
+        //private void Form1_DragOver(object sender, DragEventArgs e)
+        //{
+        //    if (GetMp4FilePath(e) != "")
+        //        e.Effect = DragDropEffects.Copy;
+        //    else
+        //        e.Effect = DragDropEffects.None;
+        //    base.OnDragOver(e);
+        //}
+        //private void Form1_DragDrop(object sender, DragEventArgs e)
+        //{
+        //    string filePath = GetMp4FilePath(e);
+        //    if (filePath != "")
+        //    {
+        //        MediaPlayer.URL = filePath;
+        //    }
+        //    base.OnDragDrop(e);
+        //}
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -288,7 +288,8 @@ namespace MyMediaPlayer
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Media Files|*.mp3;*.wma;*.wav;*.mp4;*.wmv|All Files|*.*";
+            //openFileDialog.Filter = "Media Files|*.mp3;*.wma;*.wav;*.mp4;*.wmv|All Files|*.*";
+            openFileDialog.Filter = "Media Files|*.mp3;*.m4a;*.wma;*.wav;*.mp4;*.wmv|All Files|*.*";
             openFileDialog.Multiselect = true; // Allow multiple selections
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

@@ -56,17 +56,17 @@ namespace MyMediaPlayer
             // 
             // 再生ToolStripMenuItem
             // 
-            再生ToolStripMenuItem.Name = "再生ToolStripMenuItem";
-            再生ToolStripMenuItem.Size = new Size(122, 22);
-            再生ToolStripMenuItem.Text = "再生";
-            再生ToolStripMenuItem.Click += 再生ToolStripMenuItem_Click;
+            //再生ToolStripMenuItem.Name = "再生ToolStripMenuItem";
+            //再生ToolStripMenuItem.Size = new Size(122, 22);
+            //再生ToolStripMenuItem.Text = "再生";
+            //再生ToolStripMenuItem.Click += 再生ToolStripMenuItem_Click;
             // 
             // 一時停止ToolStripMenuItem
             // 
-            一時停止ToolStripMenuItem.Name = "一時停止ToolStripMenuItem";
-            一時停止ToolStripMenuItem.Size = new Size(122, 22);
-            一時停止ToolStripMenuItem.Text = "一時停止";
-            一時停止ToolStripMenuItem.Click += 一時停止ToolStripMenuItem_Click;
+            //一時停止ToolStripMenuItem.Name = "一時停止ToolStripMenuItem";
+            //一時停止ToolStripMenuItem.Size = new Size(122, 22);
+            //一時停止ToolStripMenuItem.Text = "一時停止";
+            //一時停止ToolStripMenuItem.Click += 一時停止ToolStripMenuItem_Click;
             // 
             // panel1
             // 
@@ -139,8 +139,8 @@ namespace MyMediaPlayer
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            DragDrop += Form1_DragDrop;
-            DragOver += Form1_DragOver;
+            //DragDrop += Form1_DragDrop;
+            //DragOver += Form1_DragOver;
             contextMenuStrip1.ResumeLayout(false);
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
