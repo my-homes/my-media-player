@@ -1,15 +1,8 @@
 ﻿using AxWMPLib;
 using Global;
 using System;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
-//using System.Drawing;
+using System.Drawing;
 using System.IO;
-//using System.Linq;
-//using System.Numerics;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 using static Global.EasyObject;
@@ -25,6 +18,15 @@ namespace MyMediaPlayer
         public Form1()
         {
             InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            this.StartPosition = FormStartPosition.Manual;
+            Rectangle screen = Screen.FromPoint(Cursor.Position).WorkingArea;
+            this.ClientSize = new Size((int)(screen.Width * 0.75), (int)(screen.Height * 0.75)); /**/
+            //this.Size = new Size((int)(screen.Width * 0.75), (int)(screen.Height * 0.75)); /**/
+            int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
+            int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
+            this.Location = new Point(screen.Left + (screen.Width - w) / 2, screen.Top + (screen.Height - h) / 2);
+            this.Size = new Size(w, h);
             //AllocConsole();
             Log("ハロー©");
             // Windows Media Playerコントロールの名前を mediaPlayer と仮定
