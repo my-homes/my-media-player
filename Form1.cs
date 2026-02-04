@@ -100,10 +100,22 @@ namespace MyMediaPlayer
             MediaPlayer.Ctlcontrols.play();
             MediaPlayer.Ctlcontrols.pause();
         }
-        // 一時停止状態から再生状態に戻す手段も用意しておかなければなりません。スペースキーをおせば一時停止と再生を切り替えることができるようにします。
+        //// 一時停止状態から再生状態に戻す手段も用意しておかなければなりません。スペースキーをおせば一時停止と再生を切り替えることができるようにします。
+        //protected override bool ProcessDialogKey(Keys keyData)
+        //{
+        //    // キーの本来の処理をさせたくないときは、trueを返す
+        //    if ((keyData & Keys.KeyCode) == Keys.Space)
+        //    {
+        //        if (MediaPlayer.playState == WMPLib.WMPPlayState.wmppsPaused || MediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
+        //            MediaPlayer.Ctlcontrols.play();
+        //        else
+        //            MediaPlayer.Ctlcontrols.pause();
+        //        return true;
+        //    }
+        //    return base.ProcessDialogKey(keyData);
+        //}
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            // キーの本来の処理をさせたくないときは、trueを返す
             if ((keyData & Keys.KeyCode) == Keys.Space)
             {
                 if (MediaPlayer.playState == WMPLib.WMPPlayState.wmppsPaused || MediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
@@ -112,7 +124,60 @@ namespace MyMediaPlayer
                     MediaPlayer.Ctlcontrols.pause();
                 return true;
             }
+            if ((keyData & Keys.KeyCode) == Keys.C)
+                CopyMediaPlayerInfo();
+            if ((keyData & Keys.KeyCode) == Keys.Left)
+                OnKeyDownLeft();
+            if ((keyData & Keys.KeyCode) == Keys.Right)
+                OnKeyDownRight();
+
             return base.ProcessDialogKey(keyData);
+        }
+        void CopyMediaPlayerInfo()
+        {
+            var curMedia = MediaPlayer.currentMedia;
+            if (curMedia != null)
+            {
+                string sourceURL = curMedia.sourceURL;
+                int duration = (int)MediaPlayer.currentMedia.duration;
+                int curPosition = (int)MediaPlayer.Ctlcontrols.currentPosition;
+                TimeSpan span1 = new TimeSpan(0, 0, duration);
+                TimeSpan span2 = new TimeSpan(0, 0, curPosition);
+                string str = String.Format(
+                    "ファイルパス：{0}\n長さ：{1}\n現在位置：{2}",
+                    sourceURL, span1.ToString(), span2.ToString());
+                Clipboard.SetText(str);
+            }
+        }
+        void OnKeyDownLeft()
+        {
+            int value = trackBar1.Value;
+
+            if (Control.ModifierKeys != Keys.Control)
+                value--;
+            else
+                value -= 10;
+
+            if (value > 0)
+            {
+                trackBar1.Value = value;
+                SetCurrentPositionTrackBarValue();
+            }
+        }
+        void OnKeyDownRight()
+        {
+            int value = trackBar1.Value;
+
+            if (Control.ModifierKeys != Keys.Control)
+                value++;
+            else
+                value += 10;
+
+            if (value < trackBar1.Maximum)
+            {
+                trackBar1.Value = value;
+                SetCurrentPositionTrackBarValue();
+            }
         }
         //private void MediaPlayer_MouseUp(object sender, MouseEventArgs e)
         //{
