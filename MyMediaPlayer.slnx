@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../../util/EasyMediaPlayer/EasyMediaPlayer.csproj" />
   <Project Path="MyMediaPlayer.csproj" Id="18cff281-7692-48c4-8fc2-63d406a44f7f" />
 </Solution>

@@ -35,6 +35,9 @@
   <PropertyGroup>
     <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonJsonInterface, Version=2026.122.1008.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CommonJsonInterface.2026.122.1008.12\lib\net462\CommonJsonInterface.dll</HintPath>
@@ -144,6 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\util\EasyMediaPlayer\EasyMediaPlayer.csproj">
+      <Project>{84ee0410-6ac7-f727-6e67-bff9ef7bf731}</Project>
+      <Name>EasyMediaPlayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
