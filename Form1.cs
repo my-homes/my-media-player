@@ -22,6 +22,8 @@ namespace MyMediaPlayer
         public Form1()
         {
             InitializeComponent();
+            AllocConsole();
+            Log("ハロー©");
             this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
             this.StartPosition = FormStartPosition.Manual;
             Rectangle screen = Screen.FromPoint(Cursor.Position).WorkingArea;

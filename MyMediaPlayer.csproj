@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{18CFF281-7692-48C4-8FC2-63D406A44F7F}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>MyMediaPlayer</RootNamespace>
     <AssemblyName>MyMediaPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -38,6 +38,9 @@
   <PropertyGroup>
     <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonJsonInterface, Version=2026.122.1008.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CommonJsonInterface.2026.122.1008.12\lib\net462\CommonJsonInterface.dll</HintPath>
@@ -45,8 +48,8 @@
     <Reference Include="EasyMediaPlayer, Version=2026.205.605.50, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EasyMediaPlayer.2026.205.605.50\lib\net462\EasyMediaPlayer.dll</HintPath>
     </Reference>
-    <Reference Include="EasyObject, Version=2026.204.653.18, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\EasyObject.2026.204.653.18\lib\net462\EasyObject.dll</HintPath>
+    <Reference Include="EasyObject, Version=2026.205.625.35, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EasyObject.2026.205.625.35\lib\net462\EasyObject.dll</HintPath>
     </Reference>
     <Reference Include="JsoncParser, Version=2026.122.1022.34, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\JsoncParser.2026.122.1022.34\lib\net462\JsoncParser.dll</HintPath>
