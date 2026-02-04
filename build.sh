@@ -2,11 +2,13 @@
 set -uvx
 set -e
 cwd=`pwd`
-rm -rf obj bin *.exe
-dotnet restore
 
-msbuild.exe -restore -verbosity:quiet
-msbuild.exe -t:Rebuild -p:Configuration=Release -verbosity:quiet
+rm -rf obj bin *.exe
+
+#dotnet restore
+
+msbuild.exe -restore -verbosity:quiet MyMediaPlayer.slnx
+msbuild.exe -t:Rebuild -p:Configuration=Release -verbosity:quiet MyMediaPlayer.slnx
 find ./bin/Release -name *.exe
 
 #cd $cwd/bin/Release/net462

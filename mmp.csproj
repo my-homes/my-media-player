@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!--<OutputType>WinExe</OutputType>-->
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net462</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<AssemblyName>mmp</AssemblyName>
+		<RootNamespace>MyMediaPlayer</RootNamespace>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<UseWindowsForms>true</UseWindowsForms>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Prefer32Bit>false</Prefer32Bit>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Version>0.0.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<COMReference Include="WMPLib">
+			<WrapperTool>tlbimp</WrapperTool>
+			<VersionMinor>0</VersionMinor>
+			<VersionMajor>1</VersionMajor>
+			<Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
+			<Lcid>0</Lcid>
+			<Isolated>false</Isolated>
+			<EmbedInteropTypes>true</EmbedInteropTypes>
+		</COMReference>
+		<COMReference Include="AxWMPLib">
+			<WrapperTool>aximp</WrapperTool>
+			<VersionMinor>0</VersionMinor>
+			<VersionMajor>1</VersionMajor>
+			<Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
+			<Lcid>0</Lcid>
+			<Isolated>false</Isolated>
+		</COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EasyObject" Version="2026.204.653.18" />
+	</ItemGroup>
+
+</Project>
