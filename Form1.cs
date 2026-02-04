@@ -71,9 +71,9 @@ namespace MyMediaPlayer
             if (curMedia != null)
             {
                 string sourceURL = curMedia.sourceURL;
-                Log(sourceURL, "sourceURL");
+                //Log(sourceURL, "sourceURL");
                 string fileName = Path.GetFileName(sourceURL);
-                Log(fileName, "fileName");
+                //Log(fileName, "fileName");
                 if (this.Text != fileName)
                 {
                     this.Text = fileName;
