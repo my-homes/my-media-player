@@ -38,11 +38,11 @@ namespace MyMediaPlayer
             Timer.Tick += Timer_Tick;
             Timer.Start();
 
-            trackBar1.ValueChanged += TrackBar1_ValueChanged;
+            //trackBar1.ValueChanged += TrackBar1_ValueChanged;
             //trackBar1.KeyDown += TrackBar1_KeyDown;
 
             panel1.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
-            trackBar1.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
+            //trackBar1.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -73,8 +73,8 @@ namespace MyMediaPlayer
                 string sourceURL = curMedia.sourceURL;
                 int duration = (int)MediaPlayer.currentMedia.duration;
                 int curPosition = (int)MediaPlayer.Ctlcontrols.currentPosition;
-                trackBar1.Maximum = duration;
-                trackBar1.Value = curPosition;
+                //trackBar1.Maximum = duration;
+                //trackBar1.Value = curPosition;
 
                 TimeSpan span1 = new TimeSpan(0, 0, duration);
                 TimeSpan span2 = new TimeSpan(0, 0, curPosition);
@@ -87,20 +87,20 @@ namespace MyMediaPlayer
                 toolStripLabel2.Text = "";
             }
         }
-        private void TrackBar1_ValueChanged(object sender, EventArgs e)
-        {
-            int misalignment = (int)Math.Abs(MediaPlayer.Ctlcontrols.currentPosition - trackBar1.Value);
-            if (misalignment > 2)
-            {
-                SetCurrentPositionTrackBarValue();
-            }
-        }
-        void SetCurrentPositionTrackBarValue()
-        {
-            MediaPlayer.Ctlcontrols.currentPosition = trackBar1.Value;
-            MediaPlayer.Ctlcontrols.play();
-            MediaPlayer.Ctlcontrols.pause();
-        }
+        //private void TrackBar1_ValueChanged(object sender, EventArgs e)
+        //{
+        //    int misalignment = (int)Math.Abs(MediaPlayer.Ctlcontrols.currentPosition - trackBar1.Value);
+        //    if (misalignment > 2)
+        //    {
+        //        SetCurrentPositionTrackBarValue();
+        //    }
+        //}
+        //void SetCurrentPositionTrackBarValue()
+        //{
+        //    MediaPlayer.Ctlcontrols.currentPosition = trackBar1.Value;
+        //    MediaPlayer.Ctlcontrols.play();
+        //    MediaPlayer.Ctlcontrols.pause();
+        //}
         //// 一時停止状態から再生状態に戻す手段も用意しておかなければなりません。スペースキーをおせば一時停止と再生を切り替えることができるようにします。
         //protected override bool ProcessDialogKey(Keys keyData)
         //{
@@ -152,8 +152,7 @@ namespace MyMediaPlayer
         }
         void OnKeyDownLeft()
         {
-            int value = trackBar1.Value;
-
+            double value = MediaPlayer.Ctlcontrols.currentPosition;
             if (Control.ModifierKeys != Keys.Control)
                 value--;
             else
@@ -161,24 +160,21 @@ namespace MyMediaPlayer
 
             if (value > 0)
             {
-                trackBar1.Value = value;
-                SetCurrentPositionTrackBarValue();
+                MediaPlayer.Ctlcontrols.currentPosition = value;
             }
             if (MediaPlayer.playState == WMPLib.WMPPlayState.wmppsPaused || MediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
                 MediaPlayer.Ctlcontrols.play();
         }
         void OnKeyDownRight()
         {
-            int value = trackBar1.Value;
-
+            double value = MediaPlayer.Ctlcontrols.currentPosition;
             if (Control.ModifierKeys != Keys.Control)
                 value++;
             else
                 value += 10;
-            if (value < trackBar1.Maximum)
+            if (value < MediaPlayer.currentMedia.duration)
             {
-                trackBar1.Value = value;
-                SetCurrentPositionTrackBarValue();
+                MediaPlayer.Ctlcontrols.currentPosition = value;
             }
             if (MediaPlayer.playState == WMPLib.WMPPlayState.wmppsPaused || MediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
                 MediaPlayer.Ctlcontrols.play();
