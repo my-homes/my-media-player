@@ -42,7 +42,7 @@ namespace MyMediaPlayer
             var timer = new System.Threading.Timer((state) =>
             {
                 this.Invoke((MethodInvoker)(() => {
-                    MediaPlayer.SetWMPVolume(100);
+                    MediaPlayer.SetVolume(100);
                 }));
                 ((System.Threading.Timer)state).Dispose();
             });
@@ -50,7 +50,6 @@ namespace MyMediaPlayer
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            //MediaPlayer.SetWMPVolume(100);
             var curMedia = MediaPlayer.currentMedia;
             if (curMedia != null)
             {
@@ -80,10 +79,6 @@ namespace MyMediaPlayer
         {
             return this.MediaPlayer.HandleDialogKey(keyData);
         }
-        //private void SetWMPVolume(int volume)
-        //{
-        //    MediaPlayer.SetWMPVolume(volume);
-        //}
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             MediaPlayer.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
