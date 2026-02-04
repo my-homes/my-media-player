@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 using static Global.EasyObject;
@@ -21,7 +21,7 @@ namespace MyMediaPlayer
     public partial class Form1 : Form
     {
         AxWMPLib.AxWindowsMediaPlayer MediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-        Timer Timer = new Timer();
+        System.Windows.Forms.Timer Timer = new System.Windows.Forms.Timer();
         public Form1()
         {
             InitializeComponent();
