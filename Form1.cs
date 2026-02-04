@@ -24,7 +24,7 @@ namespace MyMediaPlayer
             ReallocConsole();
             Log("ハロー©");
             // axWindowsMediaPlayer1.uiMode = "none"; /* 外観のユーザインタフェースを消す */
-            axWindowsMediaPlayer1.settings.autoStart = true; /* 自動開始をオンにする */
+            //axWindowsMediaPlayer1.settings.autoStart = true; /* 自動開始をオンにする */
             //this.mediaPlayer.settings.autoStart = true; /* 自動開始をオンにする */
         }
 
@@ -50,6 +50,10 @@ namespace MyMediaPlayer
         private void Form1_Load(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.Dock = DockStyle.Fill;
+            // axWindowsMediaPlayer1.uiMode = "none"; /* 外観のユーザインタフェースを消す */
+            axWindowsMediaPlayer1.settings.autoStart = true; /* 自動開始をオンにする */
+            axWindowsMediaPlayer1.Ctlenabled = true;            // ダブルクリックによるフルスクリーン出力を無効化
+            axWindowsMediaPlayer1.enableContextMenu = true;     // 右クリックによるコンテキストメニューの出力を無効化
         }
     }
 }
