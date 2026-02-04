@@ -20,8 +20,14 @@ namespace MyMediaPlayer
         public Form1()
         {
             InitializeComponent();
-            ReallocConsole();
+            AllocConsole();
             Log("ハロー©");
+            // Windows Media Playerコントロールの名前を mediaPlayer と仮定
+            //axWindowsMediaPlayer1.enableContextMenu = false; // Disable the Default Context Menu 
+            //axWindowsMediaPlayer1.MouseUp += MediaPlayer_MouseUp;
+            //axWindowsMediaPlayer1.ContextMenuStrip = contextMenuStrip1;
+            // メニューの名前を contextMenuStrip1 と仮定
+            //contextMenuStrip1.Opening += ContextMenuStrip1_Opening;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -32,6 +38,20 @@ namespace MyMediaPlayer
             axWindowsMediaPlayer1.enableContextMenu = true;     // 右クリックによるコンテキストメニューの出力を無効化
             SetWMPVolume(100);
         }
+        private void MediaPlayer_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(axWindowsMediaPlayer1, e.Location);
+            }
+        }
+        // メニューが表示される直前に状態を更新する場合
+        private void ContextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // 例: 再生状態に応じてメニュー項目を有効/無効にする
+            //contextMenuStrip1.Items["再生ToolStripMenuItem"].Enabled = !(axWindowsMediaPlayer1.playState == WMPPlayState.wmppsPlaying);
+        }
+        // メニュー項目クリック時の処理例
         private void SetWMPVolume(int volume)
         {
             // Ensure volume is within the valid range (0 to 100)
@@ -74,5 +94,24 @@ namespace MyMediaPlayer
                 axWindowsMediaPlayer1.Ctlcontrols.play();
             }
         }
+
+        private void 再生ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+        }
+
+        private void 一時停止ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer1.Ctlcontrols.pause();
+        }
+        //private void 再生ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    axWindowsMediaPlayer1.Ctlcontrols.play();
+        //}
+
+        //private void 一時停止ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    axWindowsMediaPlayer1.Ctlcontrols.pause();
+        //}
     }
 }

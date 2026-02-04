@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.button2 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.再生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.一時停止ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -53,7 +58,6 @@
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(595, 293);
             this.axWindowsMediaPlayer1.TabIndex = 0;
-            //this.axWindowsMediaPlayer1.Enter += new System.EventHandler(this.axWindowsMediaPlayer1_Enter);
             // 
             // button2
             // 
@@ -64,6 +68,28 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.再生ToolStripMenuItem,
+            this.一時停止ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // 再生ToolStripMenuItem
+            // 
+            this.再生ToolStripMenuItem.Name = "再生ToolStripMenuItem";
+            this.再生ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.再生ToolStripMenuItem.Text = "再生";
+            this.再生ToolStripMenuItem.Click += new System.EventHandler(this.再生ToolStripMenuItem_Click);
+            // 
+            // 一時停止ToolStripMenuItem
+            // 
+            this.一時停止ToolStripMenuItem.Name = "一時停止ToolStripMenuItem";
+            this.一時停止ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.一時停止ToolStripMenuItem.Text = "一時停止";
+            this.一時停止ToolStripMenuItem.Click += new System.EventHandler(this.一時停止ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -77,6 +103,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -86,6 +113,9 @@
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 再生ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 一時停止ToolStripMenuItem;
     }
 }
 
