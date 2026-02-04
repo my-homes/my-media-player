@@ -1,0 +1,518 @@
+MSBuild のバージョン 18.0.5+e22287bf1 (.NET Framework)
+構文:              MSBuild.exe [オプション] [プロジェクト ファイル | ディレクトリ]
+
+説明:         プロジェクト ファイル内の指定したターゲットをビルドします。
+                    プロジェクト ファイルを指定しなかった場合、MSBuild は
+                     現在の作業ディレクトリの中から "proj" で終わるファイル
+                     拡張子を検索し、そのファイルを使用します。ディレクトリ
+                     を指定した場合、MSBuild はそのディレクトリの中から
+                     プロジェクト ファイルを検索します。
+
+スイッチ:            スイッチは "-switch"、"/switch"、"--switch" を使用して
+                     指定できます。
+
+  -target:<targets>  このプロジェクトでこれらのターゲットをビルドします。セミコロンか
+                     コンマを使用して複数のターゲットを区切るか、各ターゲットを
+                     別個に指定します。(短縮形: -t)
+                     例:
+                       -target:Resources;Compile
+
+  -property:<n>=<v>  これらのプロジェクトレベルのプロパティを設定または上書きします。<n> は
+                     プロパティ名で、<v> はプロパティ値です。
+                     セミコロンまたはコンマを使用して複数のプロパティを区切るか、
+                     各プロパティを別個に指定します。(短縮形: -p)
+                     例:
+                       -property:WarningLevel=2;OutDir=bin\Debug\
+
+  -logger:<logger>   このロガーを使用して、MSBuild からのイベントのログを記録します。複数のロガーを
+                     指定するには、各ロガーを別個に指定します。
+                     <logger> の構文:
+                       [<class>,]<assembly>[,<options>][;<parameters>]
+                     <logger class> の構文:
+                       [<partial or full namespace>.]<logger class name>
+                     <logger assembly> の構文:
+                       {<assembly name>[,<strong name>] | <assembly file>}
+                     ロガー オプションは、MSBuild がロガーを作成する方法を指定します。
+                     <logger parameters> はオプションで、入力したとおりに
+                     ロガーに渡されます。(短縮形: -l)
+                     例:
+                       -logger:XMLLogger,MyLogger,Version=1.0.2,Culture=neutral
+                       -logger:XMLLogger,C:\Loggers\MyLogger.dll;OutputAsHTML
+
+  -distributedLogger:<central logger>*<forwarding logger>
+                     このロガーを使用して MSBuild からのイベントのログを記録し、
+                     別のロガー インスタンスを各ノードに追加します。
+                     複数のロガーを指定するには、各ロガーを別個に指定します。
+                     (短縮形 -dl)
+                     <logger> の構文:
+                       [<class>,]<assembly>[,<options>][;<parameters>]
+                     <logger class> の構文:
+                       [<partial or full namespace>.]<logger class name>
+                     <logger assembly> の構文:
+                       {<assembly name>[,<strong name>] | <assembly file>}
+                     ロガー オプションは、MSBuild がロガーを作成する方法を指定します。
+                     <logger parameters> はオプションで、入力したとおりに
+                     ロガーに渡されます。(短縮形: -l)
+                     例:
+                       -dl:XMLLogger,MyLogger,Version=1.0.2,Culture=neutral
+                       -dl:MyLogger,C:\My.dll*ForwardingLogger,C:\Logger.dll
+
+  -verbosity:<level> この量の情報をイベント ログに表示します。
+                     利用可能な詳細レベル: q[uiet], m[inimal]、
+                     n[ormal], d[etailed]、および diag[nostic]。(短縮形: -v)
+                     例: 
+                       -verbosity:quiet
+
+                     注意: ファイル ロガーの詳細度は
+                           以下によって個別に設定されます
+                           -fileloggerparameters。
+
+  -validate          プロジェクトを既定のスキーマに対して検証します。(短縮形
+                     : -val)
+
+  -validate:<schema> プロジェクトを指定したスキーマに対して検証します。(短縮形
+                     : -val)
+                     例:
+                       -validate:MyExtendedBuildSchema.xsd
+
+  -consoleLoggerParameters:<parameters>
+                     コンソール ロガーへのパラメーターです。(短縮形: -clp)
+                     利用可能なパラメーター: 
+                        PerformanceSummary--タスク、ターゲット、プロジェクトにかかった時間を
+                            表示します。
+                        Summary--最後にエラーと警告の概要を表示します。
+                        NoSummary--最後にエラーと警告の概要を表示
+                            しません。
+                        ErrorsOnly--エラーのみを表示します。
+                        WarningsOnly--警告のみを表示します。
+                        NoItemAndPropertyList--各プロジェクトのビルド開始時に、
+                            項目とプロパティのリストを表示しません。
+                        ShowCommandLine--TaskCommandLineEvent メッセージを表示します
+                        ShowTimestamp--Timestamp を任意のメッセージへのプレフィックスとして
+                            表示します。
+                        ShowEventId--開始されたイベント、終了したイベント、
+                            メッセージの eventId を表示します。
+                        ForceNoAlign--テキストを、コンソール バッファーの
+                            サイズに合わせません
+                        DisableConsoleColor--すべてのログ メッセージに対して
+                            既定のコンソール カラーを使用します。
+                        EnableMPLogging--非マルチプロセッサ モードで
+                            実行する場合も、マルチプロセッサのログ形式を有効にします。
+                            このログ形式は、既定で有効です。
+                        ForceConsoleColor--コンソールでサポートされていない場合でも、
+                            ANSI コンソール カラーを使用します
+                        PreferConsoleColor--ターゲット コンソールでサポートしている場合のみ
+                            ANSI コンソール カラーを使用します
+                     Verbosity--このロガーの -verbosity 設定を
+                            上書きします。
+                     例:
+                        -consoleLoggerParameters:PerformanceSummary;NoSummary;
+                                                 Verbosity=minimal
+
+  -maxCpuCount[:n]   ビルド時の同時実行プロセスの最大数を指定
+                    します。スイッチが使用されない場合、
+                    既定値は 1 です。値を指定することなくスイッチが使用される場合、
+                    MSBuild は最大でコンピューターのプロセッサ数を使用
+                    します (短い形式: -m[:n])。
+      
+  -ignoreProjectExtensions:<extensions>
+                     ビルドするプロジェクトファイルを決定する際に
+                     無視する拡張機能のリスト。セミコロンかコンマを使用して
+                     複数の拡張機能を区切ります。
+                     (短縮形: -ignore)
+                     例:
+                       -ignoreProjectExtensions:.sln
+    
+  -toolsVersion:<version>
+                     ビルド中に使用する MSBuild ツールセット (タスク、ターゲットなど)
+                     のバージョン。このバージョンは、
+                     それぞれのプロジェクトで指定されたバージョンを上書きします。(短縮形:
+                     -tv)
+                     例:
+                       -toolsVersion:3.5
+   
+  -fileLoggerParameters[n]:<parameters>
+                     ファイル ロガーの追加のパラメーターを指定します。
+                     このスイッチの存在は、対応する
+                     -fileLogger[n] スイッチを示しています。
+                     "n" がある場合、1-9 の数字を指定できます。
+                     -fileLoggerParameters は任意の分散ファイル ロガーで
+                     使用することができます。-distributedFileLogger の説明を参照してください。
+                     (短縮形: -flp[n])
+                     コンソール ロガーでリストされているのと同じパラメーターを
+                     使用できます。他にも次のパラメーターを使用できます。
+                        LogFile--ビルド ログが書き込まれる
+                            ログファイルのパス。
+                        Append--ビルド ログがログ ファイルに追加されるのか、
+                            上書きされるのかを決定します。スイッチを
+                            設定すると、ビルド ログがログ ファイルに追加されます。
+                            スイッチを設定しないと、既存の
+                            ログ ファイルの内容を上書きします。
+                            既定では、ログ ファイルに追加しません。
+                        Encoding--ファイルのエンコードを指定します。
+                            例: UTF-8、Unicode、ASCII
+                     既定の詳細レベルは Detailed です。
+                     例:
+                       -fileLoggerParameters:LogFile=MyLog.log;Append;
+                                           Verbosity=diagnostic;Encoding=UTF-8
+
+                       -flp:Summary;Verbosity=minimal;LogFile=msbuild.sum
+                       -flp1:warningsonly;logfile=msbuild.wrn
+                       -flp2:errorsonly;logfile=msbuild.err
+
+  -terminalLogger[:auto,on,off]
+                    ターミナル ロガーを有効または無効にします。ターミナル ロガーは
+                    本体のビルド出力がリアルタイムで強化され、
+                    プロジェクトごとに論理的に整理され、強調表示するように設計されています
+                    アクション可能な情報です。auto を指定する (またはオプションを使用する)
+                    引数を指定せずに) ターミナル ロガーを使用する場合は、
+                    標準出力はリダイレクトされません。出力を解析しないでください
+                    それ以外の場合は、将来変更されずに残っている
+                    バージョン。このオプションは、MSBuild 17.8 以降で利用可能です
+                    以降で。
+                    (短い形式: -tl)
+   
+  -terminalLoggerParameters: <parameters>
+                    ターミナル ロガーへのパラメーター。(短い形式: -tlp) 
+                    使用可能なパラメーター。
+                       default -- ターミナル 
+ の既定の動作を指定します
+                       ロガー。次のいずれかの値が必要です:
+                          - `on`、`true` は TerminalLogger を強制的に使用します
+                           無効である場合も同様です。
+                          - `off`、`false` は TerminalLogger を使用しないように強制します
+                           有効である場合も同様です。
+                          - `auto` は、次の場合にターミナルで TerminalLogger を有効にします
+                           サポートされており、セッションがリダイレクトされていない場合です
+                           stdout/stderr
+                       verbosity-- 下記の verbosity 設定をオーバーライドします
+                       logger
+                       showCommandLine -- TaskCommandLineEvent メッセージを表示します
+
+                     例: 
+                       -tlp:default=auto;verbosity=diag;shownCommandLine
+   
+  -nodeReuse:<parameters>
+                     MSBuild ノードの再利用を有効化または無効化します。
+                     パラメーター:
+                     True --ビルドが完了した後もノードが残り、
+                            後続のビルドで利用されます (既定)
+                     False--ビルドが完了した後はノードは残りません
+                     (短縮形: -nr)
+                     例:
+                       -nr:true
+
+  -preprocess[:file]
+                    ビルド中にインポートされるすべてのファイルを
+                    インライン展開することで、単一の
+                    集約されたプロジェクト ファイルを作成します。ファイルの境界にはマークが挿入されます。これは、
+                    インポートされるファイルとそれが存在する場所、および
+                    ビルドに対するファイルの関係を明らかにするのに
+                    役立ちます。既定では、出力はコンソール
+                    ウィンドウに表示されます。出力ファイルのパスを指定すると、
+                    代わりにそのパスが使用されます。
+                    (短い形式: -pp)
+                    例:
+                      -pp:out.txt
+    
+  -targets[:file]
+                     使用可能なターゲットの一覧を、実際のビルド処理を
+                     実行せずに出力します。既定では、出力はコンソール 
+                     ウィンドウに書き込まれます。出力ファイルへのパスを
+                     指定した場合は、代わりにそのファイルが使用されます。
+                     (短い形式:-ts)
+                     例:
+                       -ts:out.txt
+    
+  -warnAsError[:code[;code2]]
+                     エラーとして扱う警告コードの一覧です。複数の警告コードを区切る
+                     には、セミコロンまたはコンマを使用します。すべての警告を
+                     エラーとして扱うには、値がないスイッチを使用します。
+                     (短い形式: -err[:c;[c2]])
+
+                     例:
+                       -warnAsError:MSB4130
+
+                     警告をエラーとして扱う場合、ターゲットではその警告を警告
+                     として扱い実行を継続しますが、全体的なビルドは
+                     失敗します。
+    
+  -warnNotAsError[:code[;code2]]
+                     エラーとして扱わない警告コードのリスト。
+                     セミコロンまたはコンマを使用して、複数の警告コード
+                     を区切ります。-warnaserror スイッチが設定されていない場合
+                     効果はありません
+
+                     例:
+                       -warnNotAsError:MSB3026
+    
+  -warnAsMessage[:code[;code2]]
+                     重要度の低いメッセージとして扱う警告コードの
+                     一覧です。複数の警告コードを区切るには、セミコロン
+                     またはコロンを使用します。
+                     (短い形式: -noWarn[:c;[c2]])
+
+                     例:
+                       -warnAsMessage:MSB3026
+    
+  -binaryLogger[:[LogFile=]output.binlog[;ProjectImports={None,Embed,ZipFile}]]
+                     すべてのビルド イベントを圧縮バイナリ ファイルにシリアル化します。
+                     既定では、ファイルは現在のディレクトリにあり、
+                     "msbuild.binlog" という名前が付けられます。バイナリ ログはビルド プロセスの詳細な説明であり、
+                     後でテキスト ログを再構築したり、他の分析ツールで使用
+                     したりするために使用できます。バイナリ ログは通常、
+                     最も詳細なテキスト診断レベルのログの 10 - 20 分の 1 の
+                     大きさですが、より多くの情報が含まれています。
+                     (短い形式: -bl)
+
+                     省略可能な LogFile は、バイナリ ログが保存される
+                     パスを指定します。ビルドごとに個別のログ ファイルを
+                     生成するには、パスにトークン "{}" を追加します 
+                     (例: LogFile=output-{}-log.binlog)。ログ パス内の
+                     各 "{}" は、タイムスタンプ、実行中のプロセス ID、
+                     ランダム文字列スタンプを使用して一意の文字列に
+                     置き換えられます。
+
+                     バイナリ ロガーでは、既定でプロジェクト ファイルのソース 
+                     テキストが収集されます。これには、ビルド中に読み込まれた
+                     すべてのインポート プロジェクトやターゲット ファイルが含まれます。省略可能な
+                     ProjectImports スイッチはこの動作を制御します:
+
+                      ProjectImports=None     - プロジェクトのインポートを
+                                                収集しません。
+                      ProjectImports=Embed    - プロジェクトのインポートを
+                                                ログ ファイルに埋め込みます。
+                      ProjectImports=ZipFile - プロジェクト ファイルを 
+                                                output.projectimports.zip に保存します
+                                                ここで、output はバイナリ ログ ファイル名と
+                                                同じ名前です。
+
+                     ProjectImports の既定の設定は Embed です。
+                     メモ: このロガーは、.cs、.cpp などの MSBuild 以外のソース 
+                     ファイルを収集しません。
+
+                     .binlog ファイルを "再生" するには、プロジェクト/
+                     ソリューションの代わりに引数として msbuild.exe に渡します。
+                     他のロガーは、元のビルドが実行されているかのように、
+                     ログ ファイルに含まれる情報を受け取ります。
+                     バイナリ ログとその使用方法の詳細については、
+                     https://aka.ms/msbuild/binlog を参照してください
+
+                     例:
+                       -bl
+                       -bl:output.binlog
+                       -bl:output.binlog;ProjectImports=None
+                       -bl:output.binlog;ProjectImports=ZipFile
+                       -bl:..\..\custom.binlog
+                       -binaryLogger
+    
+  -check
+                     ビルド中に BuildChecks を有効にします。
+                     BuildCheck を使用すると、ビルドのプロパティを保証するための
+                     評価ルールが有効になります。詳しくは https://aka.ms/maxmemory を参照してください
+	
+  -restore[:True|False]
+                     他のターゲットをビルドする前に Restore 
+                     という名前のターゲットを実行し、これらのターゲットのビルドが
+                     最新の復元ビルド ロジックを使用するようにします。
+                     これは、パッケージ ツリーでパッケージをビルド
+                     する前に復元する必要がある場合に役立ちます。
+                     -restore を使用する操作は、-restore:True を指定する操作と
+                     同じです。このパラメーターを使用すると、
+                     応答ファイルからの値をオーバーライドできます。
+                     (短い形式: -r)
+    
+  -profileEvaluation:<file>
+                     MSBuild の評価をプロファイルし、結果を指定のファイルに
+                     書き込みます。指定のファイルの拡張子が
+                      '.md' の場合、結果はマークダウン形式で生成されます。
+                     それ以外の場合、タブで区切られたファイルが生成されます。
+    
+  -restoreProperty:<n>=<v>
+                     これらのプロジェクトレベルのプロパティは
+                     復元時のみ設定または上書きし、-property 引数で指定した
+                     プロパティは使用しないでください。<n> はプロパティ名で、
+                     <v> はプロパティ値です。
+                     セミコロンまたはコンマを使用して複数のプロパティを区切るか、
+                     各プロパティを別個に指定します。
+                     (短縮形: -rp)
+                     例:
+                       -restoreProperty:IsRestore=true;MyProperty=value
+    
+  -interactive[:True|False]
+                     ビルド内のアクションが、ユーザーと対話できることを
+                     示します。この引数は、対話機能が予期されない
+                     自動化シナリオでは使用しないで
+                     ください。
+                     -interactive を指定する操作は、interactive:true を
+                     -指定する操作と同じです。応答ファイルからの値を
+                     オーバーライドする場合に、このパラメーターを使用します。
+    
+  -isolateProjects[:True|MessageUponIsolationViolation|False]
+                     MSBuild で各プロジェクトを分離してビルドするようにします。
+
+                     "MessageUponIsolationViolation" (またはその短縮形
+                     "Message") に設定した場合、最上位レベルのターゲットからの結果のみ
+                     -outputResultsCache スイッチが供給された場合にシリアル化されます。
+                     これは、次の可能性を軽減するためです:
+                     ターゲットがキャッシュされたターゲットへの依存関係が原因で
+                     状態が正しくなく、依存関係プロジェクトの分離違反の場合、
+                     その副作用は考慮されません。
+                     (たとえば、プロパティの定義など)
+
+                     これは MSBuild のより制限の厳しいモードです。
+                     プロジェクト グラフが評価時に静的に検出可能な必要性があり、
+                     スケジュールを改善し、プロジェクトの大規模なセットをビルドするとき
+                     のメモリ オーバーヘッド削減することができるためです。
+                     (短縮形: -isolate)
+
+                     このフラグは試験段階であるため、意図したとおりに動作しない可能性があります。
+    
+  -graphBuild[:True|False]
+                     MSBuild は、プロジェクト グラフを作成およびビルドします。
+
+                     グラフを作成するには、依存関係を構築するために
+                     プロジェクト参照を特定することが必要です。
+                     グラフをビルドするには、参照元のプロジェクトより先にプロジェクト参照の
+                     ビルドを試みることが必要であり、これは従来の MSBuild スケジュール設定
+                     と異なる点です。
+                     (短い形式: -graph)
+
+                     このフラグは実験的で、意図どおりに機能しない可能性があります。
+    
+  -inputResultsCaches:<cacheFile>...
+                     MSBuild が入力キャッシュ ファイルのセミコロン区切りの一覧の
+                     ビルド結果の読み取り元。-isolateProjects が
+                     False に設定された場合、True に設定されます。(短縮形: -irc)
+   
+  -outputResultsCache:[cacheFile]
+                      MSBuild がビルドの終了時にビルド結果キャッシュ
+                     の内容を書き込む出力キャッシュ ファイル。
+                     -isolateProjects が False に設定されている場合、True に設定されます。
+                     (短縮形: -orc)
+   
+  -reportFileAccesses[:True|False]
+                     MSBuild が、構成されているプロジェクト キャッシュ プラグインへの
+                     ファイル アクセスを報告します。
+
+                     このフラグは実験的なものであり、意図したとおりに動作しない可能性があります。
+    
+  -lowPriority[:True|False]
+                     MSBuild を低プロセス優先度で実行します。
+
+                     -lowPriority を指定することは、
+                     -lowPriority:True を指定するのと同じです。
+                     (短縮形: -low)
+    
+  -question
+                     (試験段階) ビルド作業があるかどうかに関する質問。
+                     ターゲットまたはタスクが検出されると MSBuild でエラーが発生し
+                     インクリメンタルである可能性はあるが (入力と出力を含む)、
+                     最新の状態ではありません。
+                     (短縮形: -q)
+    
+  -detailedSummary[:True|False]
+                     ビルドの最後に、ビルドした構成と、ノードに対して
+                    どのようにスケジュールされたかについて、
+                    詳細情報が表示されます。
+                    (短い形式: -ds)
+    
+  -getProperty:propertyName,...
+                    1 つ以上の指定されたプロパティの値を書き出し
+                    評価後、ビルドを実行せずに、または
+                    -targets オプションまたは -getTargetResult オプションが
+                    使用して、ビルド後に値を書き出します。
+   
+  -getItem:itemName,...
+                    1 つ以上の指定された項目の値を書き出し、
+                    評価後に関連付けられたメタデータを
+                    ビルドを実行せずに、または -targets オプション
+                    または -getTargetResult オプションが使用されている場合は、書き込み
+                    ビルド後の値。
+   
+  -getTargetResult:targetName,...
+                    1 つ以上のターゲットの出力値を書き出し、
+                    指定したターゲットが実行されます。
+   
+  -getResultOutputFile:file
+                    get* からの出力をファイルにリダイレクトします。
+
+                    例: 
+                    -getProperty:Bar -getResultOutputFile:Biz.txt
+                    これにより、プロパティ Bar の値が Biz.txt に書き込まれます。
+   
+  -featureAvailability:featureName,...
+                    機能の可用性を確認します。結果は、次のいずれかになります。
+                    文字列 "Undefined"、"Available"、"NotAvailable"、および
+                    "Preview" です。
+                    - Undefined - 機能の可用性は未定義です
+                    (機能名が機能の可用性に関して不明です
+                    チェッカー)
+                    - NotAvailable - この機能は使用できません
+                    Undefined とは異なり、機能名は機能に認識されています
+                    可用性チェッカーは、この機能が
+                    現在の MSBuild エンジンでサポートされていないことを理解しています)
+                    - Available - この機能は使用可能です
+                    - Preview - 機能はプレビュー段階です (安定していません)
+                    (短い形式: -fa)
+   
+  -multithreaded
+                     MSBuild で試験的なマルチスレッド モードを有効にします。
+                     つまり、MSBuild は複数のプロセスではなく、
+                     複数のスレッドを使用してプロジェクトを
+                     並列にビルドします。
+                     このオプションはサポートされていません。
+                     使用されるスレッドの最大数は、
+                     -maxCpuCount スイッチによって決まります。
+                     (短い形式: -mt)
+    
+  -help              このヘルプ メッセージを表示します (短い形式: -? または -h)。
+
+  -version           バージョン情報のみを表示します。(短い形式: -ver)
+
+  -noLogo            著作権情報を表示しません。
+
+  -noAutoResponse    MSBuild.rsp ファイルを自動的に含めません (短い形式:
+                     -noAutoRsp)。
+
+  -noConsoleLogger   既定のコンソール ロガーを無効にし、イベントのログを
+                    コンソールに記録しません (短い形式: -noConLog)。
+
+  -fileLogger[n]     ビルド出力のログをファイルに記録します。既定では、
+                    このファイルは "msbuild[n].log" という形式の名前で現在の
+                    ディレクトリに置かれます。すべてのノードのイベントは
+                     1 つのログに統合されます。ファイルの場所と、
+                    fileLogger の他のパラメーターは、
+                    -fileLoggerParameters[n] スイッチを追加して指定できます。
+                    "n" は (存在する場合は) 1 から 9 の数値で、最大
+                    10 のファイル ロガーをアタッチできます (短い形式:-fl[n])。
+    
+  -distributedFileLogger
+                     ビルド出力のログを、MSBuild ノードあたり 1 ログ ファイルずつ、
+                     複数のログファイルに記録します。これらのファイルの
+                     初期設定の場所は現在のディレクトリです。既定では、
+                     これらのファイルは "MSBuild<nodeid>.log" と呼ばれます。
+                     ファイルの場所と fileLogger の他のパラメーターは、
+                     "-fileLoggerParameters" スイッチを追加して指定できます。
+
+                     ログ ファイル名を fileLoggerParameters スイッチで
+                     設定した場合、分散ロガーは fileName を
+                     テンプレートとして使用し、ノード ID をこの fileName に追加して
+                     各ノードのログ ファイルを作成します。
+    
+  @<file>            テキスト ファイルからコマンド ラインの設定を挿入します。
+                     複数の応答ファイルを指定するには、各応答ファイルを
+                     別個に指定します。
+
+                     "msbuild.rsp" という名前を持つ任意の応答ファイルは、自動的に
+                     次の場所から実行されます。
+                     (1) msbuild.exe のディレクトリ
+                     (2) 最初にビルドされたプロジェクトまたはソリューションのディレクトリ
+
+例:
+
+       MSBuild MyApp.sln -t:Rebuild -p:Configuration=Release
+       MSBuild MyApp.csproj -t:Clean
+                            -p:Configuration=Debug;TargetFrameworkVersion=v3.5
+    
+詳細については、https://aka.ms/msbuild/docs をご覧ください

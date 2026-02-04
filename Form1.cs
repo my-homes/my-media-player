@@ -25,7 +25,7 @@ namespace MyMediaPlayer
         public Form1()
         {
             InitializeComponent();
-            AllocConsole();
+            //AllocConsole();
             Log("ハロー©");
             // Windows Media Playerコントロールの名前を mediaPlayer と仮定
             //axWindowsMediaPlayer1.enableContextMenu = false; // Disable the Default Context Menu 
