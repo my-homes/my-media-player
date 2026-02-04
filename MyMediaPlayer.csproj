@@ -7,7 +7,8 @@
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
-		<ImplicitUsings>enable</ImplicitUsings>
+		<!--<ImplicitUsings>enable</ImplicitUsings>-->
+		<ImplicitUsings>disable</ImplicitUsings>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Prefer32Bit>false</Prefer32Bit>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>

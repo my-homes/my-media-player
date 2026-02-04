@@ -1,4 +1,7 @@
-﻿namespace MyMediaPlayer
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace MyMediaPlayer
 {
     partial class Form1
     {
