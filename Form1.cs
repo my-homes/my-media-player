@@ -16,7 +16,7 @@ namespace MyMediaPlayer
 {
     public partial class Form1 : Form
     {
-        WMPLib.WindowsMediaPlayer mediaPlayer = new WMPLib.WindowsMediaPlayer();
+        //WMPLib.WindowsMediaPlayer mediaPlayer = new WMPLib.WindowsMediaPlayer();
 
         public Form1()
         {
@@ -43,8 +43,8 @@ namespace MyMediaPlayer
         {
             //var pl = axWindowsMediaPlayer1.playlistCollection.newPlaylist(@"C:\Users\user\Music\mine.m3u");
             //Echo(pl.count);
-            this.mediaPlayer.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
-            this.mediaPlayer.controls.play();
+            //this.mediaPlayer.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
+            //this.mediaPlayer.controls.play();
         }
 
         private void Form1_Load(object sender, EventArgs e)
