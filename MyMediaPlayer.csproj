@@ -42,6 +42,9 @@
     <Reference Include="CommonJsonInterface, Version=2026.122.1008.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CommonJsonInterface.2026.122.1008.12\lib\net462\CommonJsonInterface.dll</HintPath>
     </Reference>
+    <Reference Include="EasyMediaPlayer, Version=2026.205.605.50, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EasyMediaPlayer.2026.205.605.50\lib\net462\EasyMediaPlayer.dll</HintPath>
+    </Reference>
     <Reference Include="EasyObject, Version=2026.204.653.18, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EasyObject.2026.204.653.18\lib\net462\EasyObject.dll</HintPath>
     </Reference>
@@ -147,12 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\util\EasyMediaPlayer\EasyMediaPlayer.csproj">
-      <Project>{84ee0410-6ac7-f727-6e67-bff9ef7bf731}</Project>
-      <Name>EasyMediaPlayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
