@@ -13,8 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 using static Global.EasyObject;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+// https://lets-csharp.com/windows-media-player-key-mouse/
 namespace MyMediaPlayer
 {
     public partial class Form1 : Form
@@ -163,6 +164,8 @@ namespace MyMediaPlayer
                 trackBar1.Value = value;
                 SetCurrentPositionTrackBarValue();
             }
+            if (MediaPlayer.playState == WMPLib.WMPPlayState.wmppsPaused || MediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
+                MediaPlayer.Ctlcontrols.play();
         }
         void OnKeyDownRight()
         {
@@ -172,12 +175,13 @@ namespace MyMediaPlayer
                 value++;
             else
                 value += 10;
-
             if (value < trackBar1.Maximum)
             {
                 trackBar1.Value = value;
                 SetCurrentPositionTrackBarValue();
             }
+            if (MediaPlayer.playState == WMPLib.WMPPlayState.wmppsPaused || MediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
+                MediaPlayer.Ctlcontrols.play();
         }
         //private void MediaPlayer_MouseUp(object sender, MouseEventArgs e)
         //{
