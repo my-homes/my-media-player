@@ -30,10 +30,10 @@ namespace MyMediaPlayer
             axWindowsMediaPlayer1.Ctlenabled = true;            // ダブルクリックによるフルスクリーン出力を無効化
             axWindowsMediaPlayer1.enableContextMenu = true;     // 右クリックによるコンテキストメニューの出力を無効化
         }
-        private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
-        {
+        //private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
+        //{
 
-        }
+        //}
         private void button1_Click(object sender, EventArgs e)
         {
             axWindowsMediaPlayer1.URL = @"C:\Users\user\Music\@1080p\[1080p]  Balo TikTok 【抖音背包】 『Everytime We Touch (Original Mix) - xxxCr3 ｜ 2022抖音最火的歌曲 ｜ Trending TikTok』 【ID：TQ_oIxIDKTA】.mp4";
