@@ -1,1 +1,0 @@
-ILMerge.exe -wildcards MyMediaPlayer.exe *.dll -out:/tmp/mmp.exe

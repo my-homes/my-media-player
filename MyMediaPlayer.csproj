@@ -6,9 +6,8 @@
 		<TargetFramework>net462</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
-		<UseWindowsForms>true</UseWindowsForms>
-		<!--<ImplicitUsings>enable</ImplicitUsings>-->
 		<ImplicitUsings>disable</ImplicitUsings>
+		<UseWindowsForms>true</UseWindowsForms>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<Prefer32Bit>false</Prefer32Bit>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>

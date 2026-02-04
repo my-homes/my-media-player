@@ -71,11 +71,15 @@ namespace MyMediaPlayer
             if (curMedia != null)
             {
                 string sourceURL = curMedia.sourceURL;
+                Log(sourceURL, "sourceURL");
+                string fileName = Path.GetFileName(sourceURL);
+                Log(fileName, "fileName");
+                if (this.Text != fileName)
+                {
+                    this.Text = fileName;
+                }
                 int duration = (int)MediaPlayer.currentMedia.duration;
                 int curPosition = (int)MediaPlayer.Ctlcontrols.currentPosition;
-                //trackBar1.Maximum = duration;
-                //trackBar1.Value = curPosition;
-
                 TimeSpan span1 = new TimeSpan(0, 0, duration);
                 TimeSpan span2 = new TimeSpan(0, 0, curPosition);
                 toolStripLabel1.Text = String.Format("{0} / {1}  ", span2.ToString(), span1.ToString());
