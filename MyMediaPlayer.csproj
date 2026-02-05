@@ -45,8 +45,8 @@
     <Reference Include="CommonJsonInterface, Version=2026.122.1008.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CommonJsonInterface.2026.122.1008.12\lib\net462\CommonJsonInterface.dll</HintPath>
     </Reference>
-    <Reference Include="EasyMediaPlayer, Version=2026.205.605.50, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\EasyMediaPlayer.2026.205.605.50\lib\net462\EasyMediaPlayer.dll</HintPath>
+    <Reference Include="EasyMediaPlayer, Version=2026.205.1749.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EasyMediaPlayer.2026.205.1749.6\lib\net462\EasyMediaPlayer.dll</HintPath>
     </Reference>
     <Reference Include="EasyObject, Version=2026.205.625.35, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\EasyObject.2026.205.625.35\lib\net462\EasyObject.dll</HintPath>

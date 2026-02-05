@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace MyMediaPlayer
@@ -9,14 +6,16 @@ namespace MyMediaPlayer
     internal static class Program
     {
         /// <summary>
-        /// アプリケーションのメイン エントリ ポイントです。
+        ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+#if NET6_0_OR_GREATER
+            ApplicationConfiguration.Initialize();
+#else
             Application.Run(new Form1());
+#endif
         }
     }
 }

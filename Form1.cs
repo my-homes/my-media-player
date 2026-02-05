@@ -1,5 +1,4 @@
-﻿using AxWMPLib;
-using Global;
+﻿using Global;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,20 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WMPLib;
 using static Global.EasyObject;
 
 namespace MyMediaPlayer
 {
     public partial class Form1 : Form
     {
-        EasyMediaPlayer MediaPlayer = new EasyMediaPlayer();
+        //EasyMediaPlayer MediaPlayer = new EasyMediaPlayer();
+        EasyMediaControl MediaPlayer;
         System.Windows.Forms.Timer Timer = new System.Windows.Forms.Timer();
         public Form1()
         {
             InitializeComponent();
-            AllocConsole();
-            Log("ハロー©");
+            this.MediaPlayer = new EasyMediaControl(
+                this,
+                volume: 50
+                );
             this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
             this.StartPosition = FormStartPosition.Manual;
             Rectangle screen = Screen.FromPoint(Cursor.Position).WorkingArea;
@@ -41,21 +42,13 @@ namespace MyMediaPlayer
             panel1.Dock = DockStyle.Fill;
             panel1.Controls.Add(this.MediaPlayer);
             MediaPlayer.Dock = DockStyle.Fill;
-            var timer = new System.Threading.Timer((state) =>
-            {
-                this.Invoke((MethodInvoker)(() => {
-                    MediaPlayer.SetVolume(100);
-                }));
-                ((System.Threading.Timer)state).Dispose();
-            });
-            timer.Change(TimeSpan.FromMilliseconds(50), TimeSpan.Zero);
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
             var curMedia = MediaPlayer.currentMedia;
             if (curMedia != null)
             {
-                string sourceURL = curMedia.sourceURL;
+                string sourceURL = curMedia.Dynamic.sourceURL;
                 //Log(sourceURL, "sourceURL");
                 string fileName = Path.GetFileName(sourceURL);
                 //Log(fileName, "fileName");
@@ -63,8 +56,8 @@ namespace MyMediaPlayer
                 {
                     this.Text = fileName;
                 }
-                int duration = (int)MediaPlayer.currentMedia.duration;
-                int curPosition = (int)MediaPlayer.Ctlcontrols.currentPosition;
+                int duration = (int)MediaPlayer.currentMedia.Dynamic.duration;
+                int curPosition = (int)MediaPlayer.currentPosition;
                 TimeSpan span1 = new TimeSpan(0, 0, duration);
                 TimeSpan span2 = new TimeSpan(0, 0, curPosition);
                 toolStripLabel1.Text = String.Format("{0} / {1}  ", span2.ToString(), span1.ToString());
@@ -93,21 +86,8 @@ namespace MyMediaPlayer
             openFileDialog.Multiselect = true; // Allow multiple selections
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // 1. Create a new, empty playlist in the library
-                IWMPPlaylist myPlayList = MediaPlayer.playlistCollection.newPlaylist("MyPlayList");
-                // 2. Iterate through the selected files
-                foreach (string file in openFileDialog.FileNames)
-                {
-                    // Create a new media item from the file path
-                    IWMPMedia mediaItem = MediaPlayer.newMedia(file);
-
-                    // Add the media item to the playlist
-                    myPlayList.appendItem(mediaItem);
-                }
-                // 3. Set the newly created playlist as the current playlist to start playback
-                MediaPlayer.currentPlaylist = myPlayList;
-                // Optional: Start playback (it might start automatically depending on control settings)
-                MediaPlayer.Ctlcontrols.play();
+                MediaPlayer.PlayList1 = openFileDialog.FileNames;
+                MediaPlayer.Play();
             }
         }
     }
