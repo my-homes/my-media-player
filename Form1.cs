@@ -23,6 +23,7 @@ namespace MyMediaPlayer
             InitializeComponent();
             this.MediaPlayer = new EasyMediaControl(
                 this,
+                autoStart: true,
                 volume: 50
                 );
             this.Icon = Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -45,7 +46,7 @@ namespace MyMediaPlayer
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            var curMedia = MediaPlayer.currentMedia;
+            var curMedia = MediaPlayer.CurrentMedia;
             if (curMedia != null)
             {
                 string sourceURL = curMedia.Dynamic.sourceURL;
@@ -56,8 +57,8 @@ namespace MyMediaPlayer
                 {
                     this.Text = fileName;
                 }
-                int duration = (int)MediaPlayer.currentMedia.Dynamic.duration;
-                int curPosition = (int)MediaPlayer.currentPosition;
+                int duration = (int)MediaPlayer.CurrentMedia.Dynamic.duration;
+                int curPosition = (int)MediaPlayer.CurrentPosition;
                 TimeSpan span1 = new TimeSpan(0, 0, duration);
                 TimeSpan span2 = new TimeSpan(0, 0, curPosition);
                 toolStripLabel1.Text = String.Format("{0} / {1}  ", span2.ToString(), span1.ToString());

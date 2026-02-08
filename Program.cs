@@ -13,9 +13,8 @@ namespace MyMediaPlayer
         {
 #if NET6_0_OR_GREATER
             ApplicationConfiguration.Initialize();
-#else
-            Application.Run(new Form1());
 #endif
+            Application.Run(new Form1());
         }
     }
 }
