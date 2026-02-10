@@ -45,17 +45,17 @@
     <Reference Include="CommonJsonInterface, Version=2026.122.1008.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\CommonJsonInterface.2026.122.1008.12\lib\net462\CommonJsonInterface.dll</HintPath>
     </Reference>
-    <Reference Include="EasyMediaPlayer, Version=2026.205.1749.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\EasyMediaPlayer.2026.205.1749.6\lib\net462\EasyMediaPlayer.dll</HintPath>
+    <Reference Include="EasyMediaPlayer, Version=2026.208.1211.24, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EasyMediaPlayer.2026.208.1211.24\lib\net462\EasyMediaPlayer.dll</HintPath>
     </Reference>
-    <Reference Include="EasyObject, Version=2026.205.625.35, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\EasyObject.2026.205.625.35\lib\net462\EasyObject.dll</HintPath>
+    <Reference Include="EasyObject, Version=2026.211.44.32, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EasyObject.2026.211.44.32\lib\net462\EasyObject.dll</HintPath>
     </Reference>
     <Reference Include="JsoncParser, Version=2026.122.1022.34, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\JsoncParser.2026.122.1022.34\lib\net462\JsoncParser.dll</HintPath>
     </Reference>
-    <Reference Include="PlainObjectConverter, Version=2026.124.1019.42, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\PlainObjectConverter.2026.124.1019.42\lib\net462\PlainObjectConverter.dll</HintPath>
+    <Reference Include="PlainObjectConverter, Version=2026.211.12.55, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\PlainObjectConverter.2026.211.12.55\lib\net462\PlainObjectConverter.dll</HintPath>
     </Reference>
     <Reference Include="PlainObjectInterface, Version=2026.122.1836.32, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\PlainObjectInterface.2026.122.1836.32\lib\net462\PlainObjectInterface.dll</HintPath>
@@ -77,8 +77,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Encoding.CodePages, Version=10.0.0.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Encoding.CodePages.10.0.2\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
+    <Reference Include="System.Text.Encoding.CodePages, Version=10.0.0.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.10.0.3\lib\net462\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.ValueTuple.4.6.1\lib\net462\System.ValueTuple.dll</HintPath>
