@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Global;
 using static Global.EasyObject;
+using static Global.EasySystem;
 
 namespace MyMediaPlayer {
     public partial class Form1 : Form {
@@ -66,7 +67,13 @@ namespace MyMediaPlayer {
             return MediaPlayer.HandleDialogKey(keyData);
         }
         private void toolStripButton1_Click(object sender, EventArgs e) {
-            MediaPlayer.URL = @"C:\home17\+sub\nuget.org\my-media-player\assets\《AI STATION》😀『 六本木純情派／荻野目洋子』1986年作品😀【AIが歌う名曲】#荻野目洋子【ID=KW-Y_BvNbw0】〔1920x1080〕.mp4";
+            //MediaPlayer.URL = @"C:\home17\+sub\nuget.org\my-media-player\assets\｟AI STATION｠😀『 六本木純情派／荻野目洋子』1986年作品😀【AIが歌う名曲】#荻野目洋子【ID=KW-Y_BvNbw0】⁅1920x1080⁆.mp4";
+            //Message(EasySystem.GitProjectFolder(GetCwd()));
+            //Message(EasySystem.GitProjectFile(GetCwd(), "assets", "｟AI STATION｠😀『 六本木純情派／荻野目洋子』1986年作品😀【AIが歌う名曲】#荻野目洋子【ID=KW-Y_BvNbw0】⁅1920x1080⁆.mp4") ?? "");
+            string path = GitProjectFile(GetCwd(), "assets", "｟AI STATION｠😀『 六本木純情派／荻野目洋子』1986年作品😀【AIが歌う名曲】#荻野目洋子【ID=KW-Y_BvNbw0】⁅1920x1080⁆.mp4") ?? "";
+            Message(path);
+            Message(File.Exists(path)); ;
+            MediaPlayer.URL = path;
             //axWindowsMediaPlayer1.Ctlcontrols.play();
         }
         private void toolStripButton2_Click(object sender, EventArgs e) {
