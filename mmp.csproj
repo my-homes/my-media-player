@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <PackageReference Include="EasyMediaPlayer" Version="2026.208.1211.24" />
-    <PackageReference Include="EasyObject" Version="2026.325.920.58" />
+    <PackageReference Include="EasyObject" Version="2026.326.1848.36" />
   </ItemGroup>
 
 </Project>
